@@ -49,9 +49,14 @@ jobs:
       - name: install pytest       
         run: pip install pytest
         
+       # Step 6.3    
+      - name: install again requirment      
+        run: pip freeze > requirements.txt
+        
+        
       # Step6.2
       - name: run pytest
-        run: source venv/bin/activate && pyTest
+        run:  pyTest
       
       # Step 7
       - name: Create Zipfile archive of Dependencies
