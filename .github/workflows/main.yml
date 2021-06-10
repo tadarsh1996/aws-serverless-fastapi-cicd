@@ -35,6 +35,7 @@ jobs:
       # Step 5
       - name: Activate and Install Depencies into Virtual env
         run: python -m venv venv && source venv/bin/activate &&
+          pip install flake8 &&
           pip freeze > requirements.txt
         if: steps.cache-venv.outputs.cache-hit != 'true'
       # Step 6     
