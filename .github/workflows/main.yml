@@ -37,6 +37,14 @@ jobs:
         run: python -m venv venv && source venv/bin/activate &&
              pip freeze > requirements.txt 
         if: steps.cache-venv.outputs.cache-hit != 'true'
+        
+      #step5.1
+      
+      - name: Test with pytest
+        run: pip install pytest
+             pip install pytest-cov
+             pytest tests.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+        
       # Step 6     
       - name: Activate venv and Run Test        
         run: . venv/bin/activate && pytest
