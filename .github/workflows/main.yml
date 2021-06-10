@@ -56,7 +56,7 @@ jobs:
         
       # Step6.2
       - name: run pytest
-        run:  pyTest
+        run:  pyhton -m pyTest
       
       # Step 7
       - name: Create Zipfile archive of Dependencies
