@@ -35,22 +35,11 @@ jobs:
       # Step 5
       - name: Activate and Install Depencies into Virtual env
         run: python -m venv venv && source venv/bin/activate &&
-             pip freeze > requirements.txt 
+             pip install -r requirements.txt
         if: steps.cache-venv.outputs.cache-hit != 'true'
-        
-      #step5.1
-      
-      - name: Lint with flake8
-        run: pip install flake8
-             flake8 .
-        
       # Step 6     
       - name: Activate venv and Run Test        
-        run: . venv/bin/activate
-        
-      #step6.1
-      - name: Test with pytest
-        run: pytest
+        run: . venv/bin/activate && pytest
       
       # Step 7
       - name: Create Zipfile archive of Dependencies
