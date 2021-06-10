@@ -43,7 +43,15 @@ jobs:
         if: steps.cache-venv.outputs.cache-hit != 'true'
       # Step 6     
       - name: Activate venv and Run Test        
-        run: . venv/bin/activate && pytest
+        run: . venv/bin/activate
+        
+      # Step 6.1     
+      - name: install pytest       
+        run: pip install pytest
+        
+      # Step6.2
+      - name: run pytest
+        run: deactivate && source venv/bin/activate && pytest
       
       # Step 7
       - name: Create Zipfile archive of Dependencies
