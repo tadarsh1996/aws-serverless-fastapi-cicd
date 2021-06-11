@@ -51,10 +51,7 @@ jobs:
         run: . venv/bin/activate
         
       
-      # Step 6     
-      - name: Test with pytest
-        run: |
-          pytest
+
         
       
       # Step 7
