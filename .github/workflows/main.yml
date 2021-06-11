@@ -6,9 +6,12 @@ on:
 
 
 jobs:
+  build:
 
-  continuous-integration:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
 
     steps:
       # Step 1      
@@ -18,7 +21,7 @@ jobs:
       - name: Set up Python 
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7
+          python-version: ${{ matrix.python-version }}  
           architecture: x64
       # Step 3
       - name: Install Python Virtual ENV
@@ -34,21 +37,31 @@ jobs:
             ${{ runner.os }}-venv-
       # Step 5
       - name: Activate and Install Depencies into Virtual env
-        run: python -m venv venv && source venv/bin/activate &&
-          pip install flake8 &&
-          pip freeze > requirements.txt
+        run: python -m venv venv && source venv/bin/activate 
         if: steps.cache-venv.outputs.cache-hit != 'true'
       # Step 6     
-      - name: Activate venv and Run Test        
-        run: . venv/bin/activate
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
         # Step 6     
       - name: Activate venv and Run Test        
         run: . venv/bin/activate
         
-        # Step 6     
-      - name: Activate venv and Run Test        
-        run: pytest
+      
+      # Step 6     
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - name: Test with pytest
+        run: |
+          pytest
+        
       
       # Step 7
       - name: Create Zipfile archive of Dependencies
