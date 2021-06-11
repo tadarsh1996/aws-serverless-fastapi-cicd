@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from mangum import Mangum
-
+import json
 from api.v1.api import router as api_router
 
 app = FastAPI(title='Serverless Lambda FastAPI')
@@ -20,6 +20,11 @@ def handler(event, context):
     
     asgi_handler = Mangum(app)
     response = asgi_handler(event, context)
-
-    return response
+    json_data = event["queryStringParameters"] 
+    user = json_data["user"]
+    return {
+            "statusCode": 200,
+            "headers": {"Content-Type": "application/json"},
+            "body": json.dumps(user)
+            }
 
