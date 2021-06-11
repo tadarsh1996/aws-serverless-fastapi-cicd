@@ -14,5 +14,12 @@ def main_endpoint_test():
 
 
 # to make it work with Amazon Lambda, we create a handler object
-handler = Mangum(app=app, spec_version=2)
+# handler = Mangum(app=app)
+def handler(event, context):
+    event['requestContext'] = {}  # Adds a dummy field; mangum will process this fine
+    
+    asgi_handler = Mangum(app)
+    response = asgi_handler(event, context)
+
+    return response
 
