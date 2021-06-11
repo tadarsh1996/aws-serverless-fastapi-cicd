@@ -14,5 +14,5 @@ def main_endpoint_test():
 
 
 # to make it work with Amazon Lambda, we create a handler object
-handler = Mangum(app=app)
+handler = Mangum(app=app, spec_version=2)
 
