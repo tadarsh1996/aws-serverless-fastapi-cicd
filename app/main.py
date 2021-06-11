@@ -21,10 +21,10 @@ def handler(event, context):
     asgi_handler = Mangum(app)
     response = asgi_handler(event, context)
     json_data = event["queryStringParameters"] 
-    user = json_data["user"]
+    # user = json_data["user"]
     return {
             "statusCode": 200,
             "headers": {"Content-Type": "application/json"},
-            "body": json.dumps(user)
+            "body": json.dumps("hello")
             }
 
