@@ -23,4 +23,5 @@ urllib3==1.26.2
 uvicorn==0.13.1
 pydantic[email]
 motor==2.2.0
+pymongo
 
