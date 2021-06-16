@@ -14,7 +14,7 @@ def main_endpoint_test():
 
 
 @app.get("/user",  tags=["Endpoint Test"])
-def main_endpoint_test2():
+def main_endpoint_test():
     return {"message": "Welcome CI/CD Pipeline with GitHub Actions Post!"}
 
 app.include_router(api_router, prefix="/api/v1")
