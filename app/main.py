@@ -7,14 +7,14 @@ from api.v1.api import router as api_router
 # from app.api.api_v1.api import router as api_router
 # from mangum import Mangum
 
-# app = FastAPI(title='Serverless Lambda FastAPI')
+app = FastAPI(title='Serverless Lambda FastAPI')
 
 app = FastAPI()
+app.include_router(api_router, prefix="/api/v1")
 
-
-@app.get("/",tags=["Endpoint Test"])
-async def root():
-    return {"message": "Hello World!"}
+@app.get("/",  tags=["Endpoint Test"])
+def main_endpoint_test():
+    return {"message": "Welcome CI/CD Pipeline with GitHub Actions!"}
 
 @app.get("/user")
 def main_endpoint_test():
@@ -22,7 +22,7 @@ def main_endpoint_test():
 
   
 
-app.include_router(api_router, prefix="/api/v1")
+
 # handler = Mangum(app)
 
 
