@@ -13,7 +13,7 @@ def main_endpoint_test():
     return {"message": "Welcome CI/CD Pipeline with GitHub Actions!"}
 
 
-@app.get("/user",  tags=["Posts"])
+@app.get("/user",  tags=["Endpoint Test"])
 def main_endpoint_test2():
     return {"message": "Welcome CI/CD Pipeline with GitHub Actions Post!"}
 
