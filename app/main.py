@@ -23,7 +23,7 @@ def main_endpoint_test():
   
 
 app.include_router(api_router, prefix="/api/v1")
-handler = Mangum(app)
+# handler = Mangum(app)
 
 
 
