@@ -24,4 +24,4 @@ uvicorn==0.13.1
 pydantic[email]
 motor==2.2.0
 pymongo
-
+dnspython==2.1.0
