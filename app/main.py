@@ -47,7 +47,7 @@ def main_endpoint_test():
 app.include_router(api_router, prefix="/api/v1")
 handler = Mangum(app)
 
-@app.post("/user", status_code=status.HTTP_201_CREATED)
+@app.post("/userput", status_code=status.HTTP_201_CREATED)
 def post_message(user: Student):
         collection = db["student"] 
         print(collection)
