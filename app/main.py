@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, status
 from mangum import Mangum
 import json
 from api.v1.api import router as api_router
