@@ -32,6 +32,11 @@ class User(BaseModel):
 def main_endpoint_test():
     return {"message": "Welcome CI/CD Pipeline with GitHub Actions!"}
 
+
+@app.get("/user",  tags=["Endpoint Test"])
+def main_endpoint_test():
+    return {"message": "Welcome CI/CD Pipeline with GitHub Actions!"}
+
 def handler(event, context):
     event['requestContext'] = {}  # Adds a dummy field; mangum will process this fine  
     asgi_handler = Mangum(app)
