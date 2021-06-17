@@ -31,7 +31,7 @@ def handler(event, context):
     event['requestContext'] = {}  # Adds a dummy field; mangum will process this fine
     asgi_handler = Mangum(app)
     response = asgi_handler(event, context)
-    json_data = event["queryStringParameters"] 
+    response = response.event["queryStringParameters"] 
     # user = json_data["user"]
     return response
 
